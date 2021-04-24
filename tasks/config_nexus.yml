@@ -36,6 +36,9 @@
     - composer/create_proxy_repository
     - composer/create_hosted_repository
     - composer/create_group_repository
+    - yum/create_proxy_repository
+    - yum/create_hosted_repository
+    - yum/create_group_repository
     
 - name: NEXUS | Security -> Admin Password
   import_tasks: action/security/admin_password.yml
@@ -154,3 +157,9 @@
   with_items:
     - "{{ nexus_repositories_composer }}"
   when: nexus_composer_enable
+
+- name: NEXUS | Yum -> Create repositories
+  include_tasks:  action/yum/create_repository.yml
+  with_items:
+    - "{{ nexus_repositories_yum }}"
+  when: nexus_yum_enable

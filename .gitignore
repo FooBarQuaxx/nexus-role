@@ -5,3 +5,6 @@ tests/__pycache__
 .cache
 .vagrant
 tests/roles
+Pipfile*
+.python-version
+.yamllint

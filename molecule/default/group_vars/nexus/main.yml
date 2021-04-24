@@ -11,6 +11,7 @@ nexus_pypi_enable: true
 nexus_raw_enable: true
 nexus_composer_enable: true
 nexus_blobstores_split: true
+nexus_yum_enable: true
 
 nexus_jvm_custom_options:
   - -Dlog4j2.formatMsgNoLookups=true
@@ -219,4 +220,20 @@ nexus_repositories_composer:
       member_repos:
         - composer-hosted
         - composer-proxy
+      clean_policy: None
+
+## YUM
+nexus_repositories_yum:
+  proxy:
+    - name: yum-proxy
+      remote_url: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+      clean_policy: None
+  hosted:
+    - name: yum-hosted
+      clean_policy: None
+  group:
+    - name: yum-group
+      member_repos:
+        - yum-hosted
+        - yum-proxy
       clean_policy: None

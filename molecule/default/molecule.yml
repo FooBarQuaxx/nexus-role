@@ -1,6 +1,7 @@
 ---
 dependency:
   name: galaxy
+
 driver:
   name: docker
 
@@ -21,8 +22,6 @@ provisioner:
   lint:
     name: ansible-lint
     enabled: False
-scenario:
-  name: default
 verifier:
   name: goss
   lint:

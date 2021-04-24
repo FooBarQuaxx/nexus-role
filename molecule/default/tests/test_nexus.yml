@@ -164,6 +164,12 @@ http:
     - "{{repository.name }}"
 {% endfor %}
 
+{% for repository_type in nexus_repositories_yum.values() %}
+{% for repository in repository_type %}
+    - "{{ repository.name }}"
+{% endfor %}
+{% endfor %}
+
 service:
   nexus:
     enabled: true

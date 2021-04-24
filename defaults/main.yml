@@ -266,6 +266,20 @@ nexus_repositories_composer:
         - composer-hosted
         - composer-proxy
 
+## YUM
+nexus_yum_enable: true
+nexus_repositories_yum:
+  proxy:
+    - name: yum-proxy
+      remote_url: https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
+  hosted:
+    - name: yum-hosted
+  group:
+    - name: yum-group
+      member_repos:
+        - yum-hosted
+        - yum-proxy
+
 # MISCELLANEOUS
 nexus_force_reinstall: false
 
