@@ -11,13 +11,13 @@ configuration.with{
     recipeName = 'yum-group'
     online = true
     attributes = [
-            group  : [
-                memberNames: parsed_args.member_repos
-            ],
-            storage: [
-                blobStoreName: parsed_args.blob_store,
-                strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
-            ]
+        group: [
+            memberNames: parsed_args.member_repos
+        ],
+        storage: [
+            blobStoreName: parsed_args.blob_store,
+            strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
+        ]
     ]
 }
 

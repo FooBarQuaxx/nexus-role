@@ -11,14 +11,14 @@ configuration.with{
     recipeName = 'yum-hosted'
     online = true
     attributes = [
-            storage: [
-                writePolicy: parsed_args.write_policy.toUpperCase(),
-                blobStoreName: parsed_args.blob_store,
-                strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
-            ],
-            cleanup: [
-                policyName: new HashSet<String>([parsed_args.clean_policy]) 
-            ]
+        storage: [
+            writePolicy: parsed_args.write_policy.toUpperCase(),
+            blobStoreName: parsed_args.blob_store,
+            strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
+        ],
+        cleanup: [
+            policyName: new HashSet<String>([parsed_args.clean_policy]) 
+        ]
     ]
 }
 
