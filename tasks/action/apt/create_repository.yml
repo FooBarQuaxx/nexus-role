@@ -1,0 +1,23 @@
+---
+- name: NEXUS | Include apt default vars
+  include_vars: apt.yml
+
+- name: NEXUS | Create apt proxy repository
+  include_tasks: ../../script/run_script.yml
+  with_items:
+    - "{{ item.proxy }}"
+  loop_control:
+    loop_var: proxy
+  vars:
+    script_name: apt_create_proxy_repository
+    args: "{{ nexus_repositories_apt_default | combine(proxy) }}"
+
+- name: NEXUS | Create apt hosted repository
+  include_tasks: ../../script/run_script.yml
+  with_items:
+    - "{{ item.hosted }}"
+  loop_control:
+    loop_var: hosted
+  vars:
+    script_name: apt_create_hosted_repository
+    args: "{{ nexus_repositories_apt_default | combine(hosted) }}"

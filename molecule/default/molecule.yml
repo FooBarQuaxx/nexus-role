@@ -9,6 +9,7 @@ platforms:
   - name: nexus-test
     image: ${DOCKER_BASE_IMAGE:-idealista/jdk:8u292-bullseye-adoptopenjdk-headless}
     privileged: true
+    pre_build_image: false
     capabilities:
       - SYS_ADMIN
     volumes:

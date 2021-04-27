@@ -11,7 +11,6 @@ nexus_pypi_enable: true
 nexus_raw_enable: true
 nexus_composer_enable: true
 nexus_blobstores_split: true
-nexus_yum_enable: true
 
 nexus_jvm_custom_options:
   - -Dlog4j2.formatMsgNoLookups=true
@@ -223,6 +222,7 @@ nexus_repositories_composer:
       clean_policy: None
 
 ## YUM
+nexus_yum_enable: true
 nexus_repositories_yum:
   proxy:
     - name: yum-proxy
@@ -237,3 +237,19 @@ nexus_repositories_yum:
         - yum-hosted
         - yum-proxy
       clean_policy: None
+
+## APT
+nexus_apt_enable: true
+nexus_repositories_apt:
+  proxy:
+    - name: apt-proxy
+      remote_url: http://archive.ubuntu.com/ubuntu/
+      distribution: bionic
+      clean_policy: None
+  hosted:
+    - name: apt-hosted
+      distribution: bionic
+      clean_policy: None
+      apt_signing:
+        keypair: "{{ lookup('file', 'private.pgp')}} "
+        passphrase: ''

@@ -39,7 +39,9 @@
     - yum/create_proxy_repository
     - yum/create_hosted_repository
     - yum/create_group_repository
-    
+    - apt/create_proxy_repository
+    - apt/create_hosted_repository
+
 - name: NEXUS | Security -> Admin Password
   import_tasks: action/security/admin_password.yml
 
@@ -163,3 +165,9 @@
   with_items:
     - "{{ nexus_repositories_yum }}"
   when: nexus_yum_enable
+
+- name: NEXUS | Apt -> Create repositories
+  include_tasks:  action/apt/create_repository.yml
+  with_items:
+    - "{{ nexus_repositories_apt }}"
+  when: nexus_apt_enable

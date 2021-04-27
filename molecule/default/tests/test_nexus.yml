@@ -170,6 +170,12 @@ http:
 {% endfor %}
 {% endfor %}
 
+{% for repository_type in nexus_repositories_apt.values() %}
+{% for repository in repository_type %}
+    - "{{ repository.name }}"
+{% endfor %}
+{% endfor %}
+
 service:
   nexus:
     enabled: true

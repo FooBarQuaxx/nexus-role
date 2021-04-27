@@ -8,20 +8,21 @@ parsed_args = new JsonSlurper().parseText(args)
 Configuration configuration = repositoryManager.newConfiguration()
 configuration.with{
     repositoryName = parsed_args.name
-    recipeName = 'yum-hosted'
+    recipeName = 'apt-hosted'
     online = true
     attributes = [
         storage: [
-            writePolicy: parsed_args.write_policy.toUpperCase(),
             blobStoreName: parsed_args.blob_store,
-            strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
-        ],
-        yum: [
-            repodataDepth: parsed_args.repodata_depth,
+            strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation),
+            writePolicy: parsed_args.write_policy.toUpperCase(),
         ],
         cleanup: [
             policyName: new HashSet<String>([parsed_args.clean_policy]) 
-        ]
+        ],
+        apt: [
+            distribution: parsed_args.distribution,
+        ],
+        aptSigning: parsed_args.apt_signing,
     ]
 }
 

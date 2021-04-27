@@ -2,25 +2,38 @@ import groovy.json.JsonSlurper
 import org.sonatype.nexus.repository.config.Configuration
 import org.sonatype.nexus.repository.manager.RepositoryManager
 
-repositoryManager = container.lookup(RepositoryManager.class.getName())
+RepositoryManager repositoryManager = container.lookup(RepositoryManager.class.getName())
 parsed_args = new JsonSlurper().parseText(args)
 
 Configuration configuration = repositoryManager.newConfiguration()
 configuration.with{
     repositoryName = parsed_args.name
-    recipeName = 'yum-hosted'
+    recipeName = 'apt-proxy'
     online = true
     attributes = [
         storage: [
-            writePolicy: parsed_args.write_policy.toUpperCase(),
             blobStoreName: parsed_args.blob_store,
             strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
         ],
-        yum: [
-            repodataDepth: parsed_args.repodata_depth,
-        ],
         cleanup: [
             policyName: new HashSet<String>([parsed_args.clean_policy]) 
+        ],
+        proxy: [
+            remoteUrl: parsed_args.remote_url,
+            contentMaxAge: parsed_args.content_max_age,
+            metadataMaxAge: parsed_args.metadata_max_age,
+        ],
+        negativeCache: [
+            enabled: Boolean.valueOf(parsed_args.negative_cache_enabled),
+            timeToLive: parsed_args.negative_cache_time_to_live,
+        ],
+        httpClient: [
+            blocked: false,
+            autoBlock: true,
+        ],
+        apt: [
+            distribution: parsed_args.distribution,
+            flat: Boolean.valueOf(parsed_args.flat_repo),
         ]
     ]
 }

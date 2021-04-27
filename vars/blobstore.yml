@@ -7,6 +7,8 @@ nexus_blob_nuget: "{{ nexus_blob_prefix }}nuget"
 nexus_blob_pypi: "{{ nexus_blob_prefix }}pypi"
 nexus_blob_raw: "{{ nexus_blob_prefix }}raw"
 nexus_blob_composer: "{{ nexus_blob_prefix }}composer"
+nexus_blob_yum: "{{ nexus_blob_prefix }}yum"
+nexus_blob_apt: "{{ nexus_blob_prefix }}apt"
 
 nexus_blobstores:
   - name: "{{ nexus_blob_prefix }}mvn"
@@ -23,3 +25,7 @@ nexus_blobstores:
     path: "{{ nexus_data_path }}/blobs/{{ nexus_blob_raw }}"
   - name: "{{ nexus_blob_prefix }}composer"
     path: "{{ nexus_data_path }}/blobs/{{ nexus_blob_composer }}"
+  - name: "{{ nexus_blob_prefix }}yum"
+    path: "{{ nexus_data_path }}/blobs/{{ nexus_blob_yum }}"
+  - name: "{{ nexus_blob_prefix }}apt"
+    path: "{{ nexus_data_path }}/blobs/{{ nexus_blob_apt }}"
